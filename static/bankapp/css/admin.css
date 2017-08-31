@@ -1,0 +1,16 @@
+.user-info table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.user-info th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+.user-info tr:nth-child(even){background-color: #f2f2f2}
+
+.user-info th {
+    background-color: #4CAF50;
+    color: white;
+}

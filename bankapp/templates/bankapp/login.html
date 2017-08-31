@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <title>Trusty Bank LLC</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bankapp/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'bankapp/css/login.css' %}" />
+</head>
+<body>
+<div class="login-page">
+    <div class="form">
+        <h1>Trusty Bank LLC</h1>
+        <form id="login-form" class="login-form">
+            <input type="text" placeholder="username"/>
+            <input type="password" placeholder="password"/>
+            <button id="login-btn">login</button>
+            <p class="message">Not registered? <a href="register.html">Create an account</a></p>
+        </form>
+    </div>
+</div>
+<script src="./js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+.account-info {
+  width: 700;
+  overflow: hidden;
+}
+
+.account-info p:nth-child(odd) {
+  font-weight: bold;
+  margin-top: 0px;
+  width: 400px;
+  float: left;
+}
+.account-info p:nth-child(even) {
+  margin-top: 0px;
+  float: right;
+  overflow: hidden;
+}
+
+.faq {
+  width: 700;
+  overflow: hidden;
+}
+
+.question {
+  width: 700px;
+  overflow: hidden;
+}
+.question p:nth-child(odd) {
+  font-weight: bold;
+  float: left;
+}
+.question p:nth-child(even) {
+  padding-left: 10px;
+  overflow: hidden;
+}
+.answer {
+  width: 700px;
+  overflow: hidden;
+}
+.answer p:nth-child(odd) {
+  font-weight: bold;
+  float: left;
+  overflow: hidden;
+}
+.answer p:nth-child(even) {
+  padding-left: 10px;
+  float: left;
+  overflow: hidden;
+}
+
+.transfer-form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 220px;
+  border: 0;
+  margin: 0 15px 15px 0;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.transfer-form button {
+  float: right;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 150px;
+  border: 0;
+  padding: 15px;
+  margin-left: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.transfer-form button:hover,.transfer-form button:active,.transfer-form button:focus {
+  background: #43A047;
+}
+
+.faq-form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 455px;
+  border: 0;
+  margin: 0 15px 15px 0;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.faq-form button {
+  float: right;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 150px;
+  border: 0;
+  padding: 15px;
+  margin-left: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.faq-form button:hover,.faq-form button:active,.faq-form button:focus {
+  background: #43A047;
+}

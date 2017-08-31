@@ -1,0 +1,13 @@
+.header {
+  background: white;
+  margin: -8px;
+  padding: 10px;
+}
+
+.header {
+  text-align: right;
+}
+
+.header a {
+  padding-left: 15px;
+}

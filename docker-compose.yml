@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  nginx:
+    restart: always
+    image: nginx:latest
+    container_name: ng01
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/src
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./static:/static
+    depends_on:
+      - web
+  db:
+    image: postgres
+    container_name: ps01
+    ports:
+      - "5432:5432"
+  web:
+    restart: always
+    container_name: dg01
+    build: .
+    volumes:
+      - ./:/src
+      - ./gunicorn.py:/etc/gunicorn.d/gunicorn.py
+    command: bash -c 'gunicorn --name=hackme --pythonpath=hackme --bind=0.0.0.0:9000 --config /etc/gunicorn.d/gunicorn.py hackme.wsgi:application'
+    expose:
+      - "9000"
+    depends_on:
+      - db
