@@ -6,8 +6,6 @@ To run application for the first time
 
 ```
 %docker-compose up -d
-%python manage.py makemigrations
-%python manage.py migrate
 ```
 
 To restart after configuration changes are made
