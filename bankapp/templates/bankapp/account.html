@@ -1,0 +1,61 @@
+<!doctype html>
+<head>
+  {% load static %}
+  <title>Trusty Bank LLC - Account</title>
+  <link rel="stylesheet" href="{% static 'bankapp/css/main.css' %}" />
+  <link rel="stylesheet" href="{% static 'bankapp/css/account.css' %}" />
+</head>
+<body>
+  <div class="header">
+    <a href="admin.html">Admin</a>
+    <a href="account.html">Account</a>
+    <a href="login.html">Logout</a>
+  </div>
+  <div class="page">
+    <h1>Account Info</h1>
+    <div class="account-info">
+      <p>Balance:</p>
+      <p>$3,000</p>
+      <p>Email:</p>
+      <p>jsmith@yahoo.com</p>
+      <p>Username:</p>
+      <p>jsmith</p>
+    </div>
+    <form class="transfer-form">
+      <h1>Transfer Money</h1>
+      <input type="text" placeholder="username"/>
+      <input type="text" placeholder="amount"/>
+      <button>Send</button>
+    </form>
+
+    <form class="faq-form">
+      <h1>Ask a Question</h1>
+      <input type="text" placeholder="What's your question?"/>
+      <button>Ask</button>
+    </form>
+
+    <div class="faq">
+      <h1>FAQ</h1>
+      <hr>
+      <div class="question">
+        <p>Question:</p>
+        <p>Where did all my money go?</p>
+      </div>
+      <div class="answer">
+        <p>Answer:</p>
+        <p>It was stolen</p>
+      </div>
+      <hr>
+      <div class="question">
+        <p>Question:</p>
+        <p>Why can't I login?</p>
+      </div>
+      <div class="answer">
+        <p>Answer:</p>
+        <p>You've been hacked</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
