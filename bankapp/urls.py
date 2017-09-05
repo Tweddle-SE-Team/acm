@@ -1,10 +1,12 @@
 from django.conf.urls import url
 
 from . import views
-
+app_name = 'bankapp'
 urlpatterns = [
-    url(r'^login', views.login, name='login'),
+    url(r'^login', views.submitLogin, name='login'),
+    url(r'^logout', views.submitLogout, name='logout'),
     url(r'^register', views.register, name='register'),
-    url(r'^account', views.account, name='account'),
+    url(r'^submit', views.submitRegistration, name='submit'),
+    url(r'^(?P<username>\w+)/account/$', views.account, name='account'),
     url(r'^$', views.index, name='index')
 ]
