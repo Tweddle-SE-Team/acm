@@ -50,7 +50,12 @@ def submitQuestion(request):
 
 @login_required
 def account(request, username):
-    context = {'faq_list': Faq.objects.order_by('-pub_date')}
+    #todo: do something insecure with username
+    user = User.objects.get(username=request.user.username)
+    context = {
+        'faq_list': Faq.objects.order_by('-pub_date'),
+        'balance': user.profile.balance
+    }
     return render(request, 'bankapp/account.html', context)
 
 def login_and_redirect_to_account(request, username, password):
