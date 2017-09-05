@@ -10,9 +10,7 @@ from .models import Faq
 def index(request):
     if request.user.is_authenticated():
         return redirect('bankapp:account', request.user.username)
-    template = loader.get_template('bankapp/login.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'bankapp/login.html', {})
 
 def submitLogout(request):
     logout(request)
