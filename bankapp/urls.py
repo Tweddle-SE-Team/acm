@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^logout', views.submitLogout, name='logout'),
     url(r'^register', views.register, name='register'),
     url(r'^submit', views.submitRegistration, name='submit'),
+    url(r'^question', views.submitQuestion, name='question'),
     url(r'^(?P<username>\w+)/account/$', views.account, name='account'),
     url(r'^$', views.index, name='index')
 ]

@@ -26,32 +26,27 @@
       <button>Send</button>
     </form>
 
-    <form class="faq-form">
+    <form class="faq-form" action="{% url 'bankapp:question' %}" method="post">
+      {% csrf_token %}
       <h1>Ask a Question</h1>
-      <input type="text" placeholder="What's your question?"/>
-      <button>Ask</button>
+      <input type="text" placeholder="What's your question?" name="question"/>
+      <button type="submit">Ask</button>
     </form>
 
     <div class="faq">
       <h1>FAQ</h1>
+      {% if faq_list %}
+        {% for faq in faq_list %}
+          <hr>
+          <div class="question">
+            <p>Question:</p>
+            <p>{{ faq.question }}</p>
+          </div>
+        {% endfor %}
+      {% else %}
       <hr>
-      <div class="question">
-        <p>Question:</p>
-        <p>Where did all my money go?</p>
-      </div>
-      <div class="answer">
-        <p>Answer:</p>
-        <p>It was stolen</p>
-      </div>
-      <hr>
-      <div class="question">
-        <p>Question:</p>
-        <p>Why can't I login?</p>
-      </div>
-      <div class="answer">
-        <p>Answer:</p>
-        <p>You've been hacked</p>
-      </div>
+      <p>There are no FAQs</p>
+      {% endif %}
     </div>
   </div>
 </body>

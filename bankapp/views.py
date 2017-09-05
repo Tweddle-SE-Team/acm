@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.models import User
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
@@ -25,9 +25,8 @@ def submitLogin(request):
     return login_and_redirect_to_account(request, username, password)
 
 def register(request):
-    template = loader.get_template('bankapp/register.html')
     context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'bankapp/register.html', context)
 
 def submitRegistration(request):
     try:
@@ -40,14 +39,19 @@ def submitRegistration(request):
     User.objects.create_user(username, email, password)
     return login_and_redirect_to_account(request, username, password)
 
-def submitQuestion(request, question):
-    return HttpResponse("submitting question %s" % question)
+def submitQuestion(request):
+    try:
+        question = request.POST['question']
+    except ():
+        return HttpResponse('Something went wrong')
+    newFaq = Faq(question=question)
+    newFaq.save()
+    return redirect('bankapp:account', request.user.username)
 
 @login_required
 def account(request, username):
-    template = loader.get_template('bankapp/account.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    context = {'faq_list': Faq.objects.order_by('-pub_date')}
+    return render(request, 'bankapp/account.html', context)
 
 def login_and_redirect_to_account(request, username, password):
     user = authenticate(request, username=username, password=password)
