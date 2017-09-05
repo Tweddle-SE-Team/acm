@@ -35,7 +35,8 @@ def submitRegistration(request):
         email = request.POST['email']
     except ():
         return HttpResponse('Something went wrong')
-    #No validation of whether the user exists
+    if User.objects.filter(username=username).exists():
+        return HttpResponse('TODO: render some user registration error')
     User.objects.create_user(username, email, password)
     return login_and_redirect_to_account(request, username, password)
 
