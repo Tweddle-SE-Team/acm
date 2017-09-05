@@ -48,6 +48,27 @@ def submitQuestion(request):
     newFaq.save()
     return redirect('bankapp:account', request.user.username)
 
+def submitTransfer(request):
+    try:
+        to = request.POST['to']
+        amount = int(request.POST['amount'])
+    except ():
+        return HttpResponse('Something went wrong')
+    user = User.objects.get(username=request.user.username)
+    if user.profile.balance < amount:
+        return HttpResponse('TODO: render failed transfer with error not high enough balance')
+    if to == request.user.username:
+        return HttpResponse('TODO: render failed transfer with error cannot transfer money to yourself')
+    try:
+        recipient = User.objects.get(username=to)
+    except User.DoesNotExist:
+        return HttpResponse('TODO: render failed transfer with error recipient does not exist')
+    user.profile.balance -= amount
+    recipient.profile.balance += amount
+    user.save()
+    recipient.save()
+    return redirect('bankapp:account', request.user.username)
+
 @login_required
 def account(request, username):
     #todo: do something insecure with username

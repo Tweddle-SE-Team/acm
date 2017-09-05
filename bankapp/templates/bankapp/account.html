@@ -19,11 +19,12 @@
       <p>Username:</p>
       <p>{{ username }}</p>
     </div>
-    <form class="transfer-form">
+    <form class="transfer-form" action="{% url 'bankapp:transfer' %}" method="post">
+      {% csrf_token %}
       <h1>Transfer Money</h1>
-      <input type="text" placeholder="username"/>
-      <input type="text" placeholder="amount"/>
-      <button>Send</button>
+      <input type="text" placeholder="username" name="to"/>
+      <input type="text" placeholder="amount" name="amount"/>
+      <button type="submit">Send</button>
     </form>
 
     <form class="faq-form" action="{% url 'bankapp:question' %}" method="post">
