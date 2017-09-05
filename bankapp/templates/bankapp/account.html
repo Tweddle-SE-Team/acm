@@ -40,7 +40,7 @@
           <hr>
           <div class="question">
             <p>Question:</p>
-            <p>{{ faq.question }}</p>
+            <p>{{ faq.question|safe }}</p>
           </div>
         {% endfor %}
       {% else %}
