@@ -54,7 +54,9 @@ def account(request, username):
     user = User.objects.get(username=request.user.username)
     context = {
         'faq_list': Faq.objects.order_by('-pub_date'),
-        'balance': user.profile.balance
+        'balance': user.profile.balance,
+        'username': user.username,
+        'email': user.email
     }
     return render(request, 'bankapp/account.html', context)
 
