@@ -25,6 +25,9 @@
       <input type="text" placeholder="username" name="to"/>
       <input type="text" placeholder="amount" name="amount"/>
       <button type="submit">Send</button>
+      {% if error != '' %}
+      <p class="errors">{{ error }}</p>
+      {% endif %}
     </form>
 
     <form class="faq-form" action="{% url 'bankapp:question' %}" method="post">

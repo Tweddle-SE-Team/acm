@@ -21,8 +21,13 @@ def submitLogin(request):
         username = request.POST['username']
         password = request.POST['password']
     except ():
-        return HttpResponse('Something went wrong')
-    return login_and_redirect_to_account(request, username, password)
+        return render(request, 'bankapp/login.html', {'error': 'Invalid username or password'})
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return redirect('bankapp:account', username)
+    else:
+        return render(request, 'bankapp/login.html', {'error': 'Invalid username or password'})
 
 def register(request):
     context = {}
@@ -34,11 +39,13 @@ def submitRegistration(request):
         password = request.POST['password']
         email = request.POST['email']
     except ():
-        return HttpResponse('Something went wrong')
+        render(request, 'bankapp/login.html', {'error': 'There was an error with your request'})
     if User.objects.filter(username=username).exists():
-        return HttpResponse('TODO: render some user registration error')
+        return render(request, 'bankapp/login.html', {'error': 'Username already exists'})
     User.objects.create_user(username, email, password)
-    return login_and_redirect_to_account(request, username, password)
+    user = authenticate(request, username=username, password=password)
+    login(request, user)
+    return redirect('bankapp:account', username)
 
 def submitQuestion(request):
     try:
@@ -54,16 +61,16 @@ def submitTransfer(request):
         to = request.POST['to']
         amount = int(request.POST['amount'])
     except ValueError:
-        return HttpResponse('amount must be an integer value')
+        return account(request, username=request.user.username, error='Amount must be a number')
     user = User.objects.get(username=request.user.username)
     if user.profile.balance < amount:
-        return HttpResponse('TODO: render failed transfer with error not high enough balance')
+        return account(request, username=request.user.username, error='Your balance is not high enough')
     if to == request.user.username:
-        return HttpResponse('TODO: render failed transfer with error cannot transfer money to yourself')
+        return account(request, username=request.user.username, error='You cannot transfer money to yourself')
     try:
         recipient = User.objects.get(username=to)
     except User.DoesNotExist:
-        return HttpResponse('TODO: render failed transfer with error recipient does not exist')
+        return account(request, username=request.user.username, error='Recipient does not exist')
     user.profile.balance -= amount
     recipient.profile.balance += amount
     user.save()
@@ -71,21 +78,14 @@ def submitTransfer(request):
     return redirect('bankapp:account', request.user.username)
 
 @login_required
-def account(request, username):
+def account(request, username, error=''):
     #todo: do something insecure with username
     user = User.objects.get(username=request.user.username)
     context = {
         'faq_list': Faq.objects.order_by('-pub_date'),
         'balance': user.profile.balance,
         'username': user.username,
-        'email': user.email
+        'email': user.email,
+        'error': error
     }
     return render(request, 'bankapp/account.html', context)
-
-def login_and_redirect_to_account(request, username, password):
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return redirect('bankapp:account', username)
-    else:
-        return redirect('bankapp:register')
