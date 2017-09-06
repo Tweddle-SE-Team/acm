@@ -53,8 +53,8 @@ def submitTransfer(request):
     try:
         to = request.POST['to']
         amount = int(request.POST['amount'])
-    except ():
-        return HttpResponse('Something went wrong')
+    except ValueError:
+        return HttpResponse('amount must be an integer value')
     user = User.objects.get(username=request.user.username)
     if user.profile.balance < amount:
         return HttpResponse('TODO: render failed transfer with error not high enough balance')
