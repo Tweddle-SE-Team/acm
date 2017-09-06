@@ -15,6 +15,9 @@
             <input type="password" placeholder="password" name="password"/>
             <input type="text" placeholder="email address" name="email"/>
             <button type="submit">Submit</button>
+            {% if error %}
+            <p class="errors">{{ error }}</p>
+            {% endif %}
             <p class="message">Already registered? <a href="{% url 'bankapp:index' %}">Sign In</a></p>
         </form>
     </div>
