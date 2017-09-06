@@ -26,7 +26,7 @@ SECRET_KEY = 'v*045ttg#7^_$&&@^gn^zrj5q-l1*g2vbz^o7cefanh2&8&*gc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["web"]
+ALLOWED_HOSTS = ["web", "localhost", "127.0.0.1"]
 
 LOGIN_URL = '/app/'
 LOGOUT_REDIRECT_URL = '/app/'
@@ -78,15 +78,15 @@ WSGI_APPLICATION = 'hackme.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'HOST': 'db',
-#         'PORT': 5432,
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
+}
 
 
 db_from_env = dj_database_url.config(conn_max_age=500)
