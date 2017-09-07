@@ -22,9 +22,9 @@
     <form class="transfer-form" action="{% url 'bankapp:transfer' %}" method="post">
       {% csrf_token %}
       <h1>Transfer Money</h1>
-      <input type="text" placeholder="username" name="to"/>
-      <input type="text" placeholder="amount" name="amount"/>
-      <button type="submit">Send</button>
+      <input id="transfer-form-username" type="text" placeholder="username" name="to"/>
+      <input id="transfer-form-amount" type="text" placeholder="amount" name="amount"/>
+      <button id="transfer-form-submit" type="submit">Send</button>
       {% if error != '' %}
       <p class="errors">{{ error }}</p>
       {% endif %}
