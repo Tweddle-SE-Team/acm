@@ -13,11 +13,11 @@
     <h1>Account Info</h1>
     <div class="account-info">
       <p>Balance:</p>
-      <p>${{ balance }}</p>
+      <p id="balance">${{ balance }}</p>
       <p>Email:</p>
-      <p>{{ email }}</p>
+      <p id="email">{{ email }}</p>
       <p>Username:</p>
-      <p>{{ username }}</p>
+      <p id="username">{{ username }}</p>
     </div>
     <form class="transfer-form" action="{% url 'bankapp:transfer' %}" method="post">
       {% csrf_token %}
