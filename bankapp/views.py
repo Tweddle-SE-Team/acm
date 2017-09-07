@@ -79,13 +79,21 @@ def submitTransfer(request):
 
 @login_required
 def account(request, username, error=''):
-    #todo: do something insecure with username
-    user = User.objects.get(username=request.user.username)
-    context = {
-        'faq_list': Faq.objects.order_by('-pub_date'),
-        'balance': user.profile.balance,
-        'username': user.username,
-        'email': user.email,
-        'error': error
-    }
+    if User.objects.filter(username=username).exists():
+        user = User.objects.get(username=username)
+        context = {
+            'faq_list': Faq.objects.order_by('-pub_date'),
+            'balance': user.profile.balance,
+            'username': user.username,
+            'email': user.email,
+            'error': error
+        }
+    else:
+        context = {
+            'faq_list': [],
+            'balance': 'n/a',
+            'username': username,
+            'email': 'n/a',
+            'error': error
+        }
     return render(request, 'bankapp/account.html', context)
