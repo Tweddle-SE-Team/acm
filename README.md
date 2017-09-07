@@ -53,3 +53,5 @@ You can run the website locally in a docker container.
     ```
     git push heroku master
     ```
+
+> Note: You can reset the database by running `heroku run './reset.sh'`
