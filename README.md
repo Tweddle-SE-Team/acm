@@ -5,10 +5,11 @@ Do you have what it takes to hack the Trusty Bank?  The answer is almost probabl
 ## Goals
 Try to accomplish the following:
 
-* Find the user with the highest balance
-* Login as any user
-* Transfer another user's money to your account
-
+* Steal money from another user
+* Access another user's account page
+* Login as an admin
+* Try to crash the website (local installs only please)
+* Steal money from all the users
 
 ## Run it local
 You can run the website locally in a docker container.
